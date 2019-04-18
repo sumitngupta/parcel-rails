@@ -6,9 +6,9 @@ class ParcelGenerator < ::Rails::Generators::Base
 
   def create_initializer_file
     initializer 'parcel.rb' do
-      %{Rails.application.config.parcel do |parcel|
-  parcel.entry_points = %w(app/javascript/application.js)
-  parcel.destination = 'public/parcels'
+      %{Rails.application.configure do
+  config.parcel.entry_points = %w(app/javascript/application.js)
+  config.parcel.destination = "public/parcels"
 end}
     end
   end
