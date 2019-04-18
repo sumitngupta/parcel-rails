@@ -13,7 +13,14 @@ module Parcel
       end
 
       def self.to_args(config)
-        new([*config.entry_points, '-d', config.destination])
+        arr = [*config.entry_points, '-d', config.destination]
+
+        if config.public_url.present?
+          arr << '--public-url'
+          arr << config.public_url
+        end
+
+        new(arr)
       end
 
       def initialize(args)
