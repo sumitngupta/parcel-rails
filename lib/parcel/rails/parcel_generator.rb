@@ -9,11 +9,12 @@ class ParcelGenerator < ::Rails::Generators::Base
       %{Rails.application.configure do
   config.parcel.entry_points = %w(app/javascript/application.js)
   config.parcel.destination = "public/parcels"
+  config.parcel.cache_dir = 'tmp/cache'
 end}
     end
   end
 
   def add_parcel_bundler
-    `yarn add parcel-bundler`
+    `yarn add parcel@next`
   end
 end

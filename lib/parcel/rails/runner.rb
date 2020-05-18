@@ -13,11 +13,16 @@ module Parcel
       end
 
       def self.to_args(config)
-        arr = [*config.entry_points, '-d', config.destination]
+        arr = [*config.entry_points, '--dist-dir', config.destination]
 
         if config.public_url.present?
           arr << '--public-url'
           arr << config.public_url
+        end
+
+        if config.cache_dir.present?
+          arr << '--cache-dir'
+          arr << config.cache_dir
         end
 
         new(arr)
@@ -32,7 +37,7 @@ module Parcel
       end
 
       def serve
-        parcel_commmand
+        parcel_commmand(:serve)
       end
 
       private
